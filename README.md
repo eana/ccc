@@ -2,6 +2,8 @@ CircleCI Context Commander
 ==========================
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black)
+[![CircleCI](https://circleci.com/gh/eana/circleci_context_commander.svg?style=shield&circle-token=3ba121cc53abe982e955dc61ef1f194c12db063e)](https://app.circleci.com/pipelines/gh/eana/circleci_context_commander)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=eana/circleci_context_commander&identifier=332534474)](https://dependabot.com)
 
 <!-- vim-markdown-toc GFM -->
 
