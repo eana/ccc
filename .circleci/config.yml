@@ -1,0 +1,64 @@
+---
+version: 2.1
+
+executors:
+  python:
+    docker:
+      - image: circleci/python:3.8
+
+commands:
+  setup_env:
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-pip-{{ checksum "Pipfile.lock" }}
+            - v1-pip
+      - run:
+          name: Install deps
+          command: pipenv install --dev --deploy
+      - save_cache:
+          key: v1-pip-{{ checksum "Pipfile.lock" }}
+          paths:
+            - ~/.cache/pipenv
+
+jobs:
+  black:
+    executor: python
+    steps:
+      - setup_env
+      - run:
+          name: Run Black
+          command: pipenv run black --check --diff .
+  rotate_keys:
+    executor: python
+    parameters:
+      rotating_context:
+        type: string
+        default: default
+    steps:
+      - setup_env
+      - run:
+          name: Install circleci cli
+          command: curl -fLSs https://circle.ci/cli | VERSION=0.1.11924 sudo bash && alias circleci=/usr/local/bin/circleci
+      - run:
+          name: Rotate the keys for contexts
+          command: pipenv run python ccc.py --context "<< parameters.rotating_context >>"
+
+workflows:
+  version: 2
+  lint_check:
+    jobs:
+      - black
+  weekly:
+    triggers:
+      - schedule:
+          cron: "0 3 * * 1"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - rotate_keys:
+          context: aws_svc_circleci
+          rotating_context: aws_svc_circleci

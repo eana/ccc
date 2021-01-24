@@ -1,0 +1,6 @@
+# OS and Editor Files
+*.swp
+
+# Python Cache files
+*.py[cod]
+__pycache__/
