@@ -60,5 +60,7 @@ workflows:
                 - master
     jobs:
       - rotate_keys:
-          context: aws_svc_circleci
+          context:
+            - aws_svc_circleci
+            - circleci_token
           rotating_context: aws_svc_circleci
