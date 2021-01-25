@@ -36,6 +36,9 @@ jobs:
       rotating_context:
         type: string
         default: default
+      aws_username:
+        type: string
+        default: default
     steps:
       - setup_env
       - run:
@@ -43,7 +46,7 @@ jobs:
           command: curl -fLSs https://circle.ci/cli | VERSION=0.1.11924 sudo bash && alias circleci=/usr/local/bin/circleci
       - run:
           name: Rotate the keys for contexts
-          command: pipenv run python ccc.py --context "<< parameters.rotating_context >>"
+          command: pipenv run python ccc.py --context "<< parameters.rotating_context >>" --username "<< parameters.aws_username >>"
 
 workflows:
   version: 2
@@ -64,8 +67,10 @@ workflows:
             - aws_svc_circleci
             - circleci_token
           rotating_context: aws_svc_circleci
+          aws_username: svc_circleci
       - rotate_keys:
           context:
             - tf-modules
             - circleci_token
           rotating_context: tf-modules
+          aws_username: svc_tf_modules
