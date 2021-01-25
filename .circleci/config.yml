@@ -64,3 +64,8 @@ workflows:
             - aws_svc_circleci
             - circleci_token
           rotating_context: aws_svc_circleci
+      - rotate_keys:
+          context:
+            - tf-modules
+            - circleci_token
+          rotating_context: tf-modules
