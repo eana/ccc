@@ -47,9 +47,29 @@ jobs:
 
 workflows:
   version: 2
-  lint_check:
+  run:
     jobs:
       - black
+      - rotate_keys:
+          context:
+            - aws_svc_circleci
+            - circleci_token
+          rotating_context: aws_svc_circleci
+          requires:
+            - black
+          filters:
+            branches:
+              only: master
+      - rotate_keys:
+          context:
+            - tf-modules
+            - circleci_token
+          rotating_context: tf-modules
+          requires:
+            - black
+          filters:
+            branches:
+              only: master
   weekly:
     triggers:
       - schedule:
@@ -59,13 +79,18 @@ workflows:
               only:
                 - master
     jobs:
+      - black
       - rotate_keys:
           context:
             - aws_svc_circleci
             - circleci_token
           rotating_context: aws_svc_circleci
+          requires:
+            - black
       - rotate_keys:
           context:
             - tf-modules
             - circleci_token
           rotating_context: tf-modules
+          requires:
+            - black
