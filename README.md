@@ -9,12 +9,12 @@ CircleCI Context Commander
 
 * [Overview](#overview)
 * [Setup](#setup)
-	* [Install the Dependencies](#install-the-dependencies)
-	* [Setup the CircleCI CLI tool](#setup-the-circleci-cli-tool)
+    * [Install the Dependencies](#install-the-dependencies)
+    * [Setup the CircleCI CLI tool](#setup-the-circleci-cli-tool)
 * [Configuration](#configuration)
-	* [AWS Credentials](#aws-credentials)
-	* [ AWS IAM Policy](#aws-iam-policy)
-	* [Adding a new Circleci context](#adding-a-new-circleci-context)
+    * [AWS Credentials](#aws-credentials)
+    * [AWS IAM Policy](#aws-iam-policy)
+    * [Adding a new Circleci context](#adding-a-new-circleci-context)
 * [Usage](#usage)
 
 <!-- vim-markdown-toc -->
@@ -77,7 +77,7 @@ Variables](https://docs.aws.amazon.com/cli/latest/userguide/cli-environment.html
 **Note - You need to use the `AWS_PROFILE` environmental variables if you are
 using switch roles.**
 
-### AWS IAM Policy
+### AWS IAM Policy
 
 When a new context has been created inside Circleci and has an AWS IAM user
 with Access/Secret key pair associated with it. The user will require the
