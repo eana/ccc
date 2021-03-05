@@ -7,9 +7,9 @@ verify_ssl = true
 black = "==19.3b0"
 
 [packages]
-click = "*"
-boto3 = "*"
-sh = "*"
+click = "==7.1.1"
+boto3 = "==1.14.38"
+sh = "==1.13.1"
 
 [requires]
 python_version = "3.9"
