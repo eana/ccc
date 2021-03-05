@@ -30,29 +30,28 @@ Setup
 ### Install the Dependencies
 
 This script is written in Python and it's dependencies can be installed using
-[pipenv](https://pipenv.readthedocs.io/en/latest/). Follow the instructions in
-[pipenv docs](https://pipenv.readthedocs.io/en/latest/#install-pipenv-today) to
-install it.
+[poetry](https://python-poetry.org/). Follow the instructions in [poetry
+docs](https://python-poetry.org/docs/#installation) to install it.
 
-Once you have pipenv installed you can install all the required python libs by
+Once you have poetry installed you can install all the required python libs by
 running:
 
 ```bash
-pipenv install
+poetry install
 ```
 
 If you have already installed the libs and want to ensure you are running the
 correct versions just run:
 
 ```bash
-pipenv sync
+poetry sync
 ```
 
 Once you have installed everything you will need to activate the Virtual
-Environment that Pipenv created for you before running the script:
+Environment that poetry created for you before running the script:
 
 ```bash
-pipenv shell
+poetry shell
 ```
 
 ### Setup the CircleCI CLI tool
@@ -100,10 +99,9 @@ if you want to run the script locally then the script has a built in help that
 lists the full usage.
 
 ```bash
-# Run via pipenv
-pipenv run ./ccc.py --help
+# Run via poetry
+poetry run ./ccc.py --help
 # or activate the virtual environment and run the script directly
-pipenv shell
+poetry shell
 ./ccc.py --help
 ```
-
