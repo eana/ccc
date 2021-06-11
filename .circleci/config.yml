@@ -40,7 +40,7 @@ jobs:
       - setup_env
       - run:
           name: Install circleci cli
-          command: curl -fLSs https://circle.ci/cli | VERSION=0.1.15224 sudo bash && alias circleci=/usr/local/bin/circleci
+          command: curl -fLSs https://circle.ci/cli | sudo VERSION=0.1.15224 bash && alias circleci=/usr/local/bin/circleci
       - run:
           name: Rotate the keys for contexts
           command: pipenv run python ccc.py --context "<< parameters.rotating_context >>"
