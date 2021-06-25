@@ -25,6 +25,7 @@ commands:
 jobs:
   black:
     executor: python
+    resource_class: small
     steps:
       - setup_env
       - run:
@@ -32,6 +33,7 @@ jobs:
           command: pipenv run black --check --diff .
   rotate_keys:
     executor: python
+    resource_class: small
     parameters:
       rotating_context:
         type: string
@@ -70,6 +72,16 @@ workflows:
           filters:
             branches:
               only: master
+      - rotate_keys:
+          context:
+            - aws_svc_renovate
+            - circleci_token
+          rotating_context: aws_svc_renovate
+          requires:
+            - black
+          filters:
+            branches:
+              only: master
   weekly:
     triggers:
       - schedule:
@@ -92,5 +104,12 @@ workflows:
             - tf-modules
             - circleci_token
           rotating_context: tf-modules
+          requires:
+            - black
+      - rotate_keys:
+          context:
+            - aws_svc_renovate
+            - circleci_token
+          rotating_context: aws_svc_renovate
           requires:
             - black
