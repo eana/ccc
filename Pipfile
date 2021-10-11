@@ -7,7 +7,7 @@ verify_ssl = true
 black = "==19.3b0"
 
 [packages]
-click = "==8.0.1"
+click = "==8.0.3"
 boto3 = "==1.18.57"
 sh = "==1.14.2"
 
