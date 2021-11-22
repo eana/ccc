@@ -20,7 +20,7 @@ commands:
       - save_cache:
           key: v1-pip-{{ checksum "Pipfile.lock" }}
           paths:
-            - ~/.cache/pipenv
+            - ~/.local/share/virtualenvs
 
 jobs:
   black:
