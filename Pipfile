@@ -8,7 +8,7 @@ black = "==22.1.0"
 
 [packages]
 click = "==8.0.4"
-boto3 = "==1.21.9"
+boto3 = "==1.21.12"
 sh = "==1.14.2"
 
 [requires]
