@@ -4,7 +4,7 @@ version: 2.1
 executors:
   python:
     docker:
-      - image: circleci/python:3.10
+      - image: cimg/python:3.10
 
 commands:
   setup_env:
@@ -12,13 +12,13 @@ commands:
       - checkout
       - restore_cache:
           keys:
-            - v2-pip-{{ checksum "Pipfile.lock" }}
-            - v2-pip
+            - v3-pip-{{ checksum "Pipfile.lock" }}
+            - v3-pip
       - run:
           name: Install deps
           command: pipenv install --dev --deploy
       - save_cache:
-          key: v2-pip-{{ checksum "Pipfile.lock" }}
+          key: v3-pip-{{ checksum "Pipfile.lock" }}
           paths:
             - ~/.local/share/virtualenvs
 
