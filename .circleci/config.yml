@@ -12,13 +12,13 @@ commands:
       - checkout
       - restore_cache:
           keys:
-            - v1-pip-{{ checksum "Pipfile.lock" }}
+            - v1-pip-{{ checksum "requirements.txt" }}
             - v1-pip
       - run:
           name: Install deps
-          command: pipenv install --dev --deploy
+          command: pip install -r requirements.txt
       - save_cache:
-          key: v1-pip-{{ checksum "Pipfile.lock" }}
+          key: v1-pip-{{ checksum "requirements.txt" }}
           paths:
             - ~/.local/share/virtualenvs
 
@@ -30,7 +30,7 @@ jobs:
       - setup_env
       - run:
           name: Run Black
-          command: pipenv run black --check --diff .
+          command: black --check --diff .
   rotate_keys:
     executor: python
     resource_class: small
@@ -45,7 +45,7 @@ jobs:
           command: curl -fLSs https://circle.ci/cli | sudo VERSION=0.1.15224 bash && alias circleci=/usr/local/bin/circleci
       - run:
           name: Rotate the keys for contexts
-          command: pipenv run python ccc.py --context "<< parameters.rotating_context >>"
+          command: python ccc.py --context "<< parameters.rotating_context >>"
 
 workflows:
   version: 2
