@@ -1,17 +1,17 @@
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "CredentialSelfManagement",
-            "Action": [
-                "iam:GetUser",
-                "iam:ListAccessKeys",
-                "iam:GetAccessKeyLastUsed",
-                "iam:CreateAccessKey",
-                "iam:DeleteAccessKey"
-            ],
-            "Effect": "Allow",
-            "Resource": "arn:aws:iam::12345678901:user/${aws:username}"
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "CredentialSelfManagement",
+      "Action": [
+        "iam:GetUser",
+        "iam:ListAccessKeys",
+        "iam:GetAccessKeyLastUsed",
+        "iam:CreateAccessKey",
+        "iam:DeleteAccessKey"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:iam::12345678901:user/${aws:username}"
+    }
+  ]
 }
